@@ -1,6 +1,6 @@
 package json;
 
-import java.util.List;
+import java.util.Arrays;
 
 public class Bicing {
 	
@@ -9,14 +9,23 @@ public class Bicing {
 	private double latitude;
 	private double longitude;
 	private String streetName;
-	private int streetNumber;
+	private String streetNumber;
 	private int altitude;
 	private int slots;
 	private int bikes;
-	private List<Integer> nearbyStations;
+	private String[] nearbyStations;
 	private String status;
-	public Bicing(long id, String type, double latitude, double longitude, String streetName, int streetNumber,
-			int altitude, int slots, int bikes, List<Integer> nearbyStations, String status) {
+	
+	
+	
+	public Bicing() {
+	}
+
+
+
+	public Bicing(long id, String type, double latitude, double longitude, String streetName, String streetNumber,
+			int altitude, int slots, int bikes, String[] nearbyStations, String status) {
+		super();
 		this.id = id;
 		this.type = type;
 		this.latitude = latitude;
@@ -29,79 +38,151 @@ public class Bicing {
 		this.nearbyStations = nearbyStations;
 		this.status = status;
 	}
+
+
+
 	public long getId() {
 		return id;
 	}
+
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
+
+
 	public String getType() {
 		return type;
 	}
+
+
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
+
+
 	public double getLatitude() {
 		return latitude;
 	}
+
+
+
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
+
+
+
 	public double getLongitude() {
 		return longitude;
 	}
+
+
+
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
+
+
+
 	public String getStreetName() {
 		return streetName;
 	}
+
+
+
 	public void setStreetName(String streetName) {
 		this.streetName = streetName;
 	}
-	public int getStreetNumber() {
+
+
+
+	public String getStreetNumber() {
 		return streetNumber;
 	}
-	public void setStreetNumber(int streetNumber) {
+
+
+
+	public void setStreetNumber(String streetNumber) {
 		this.streetNumber = streetNumber;
 	}
+
+
+
 	public int getAltitude() {
 		return altitude;
 	}
+
+
+
 	public void setAltitude(int altitude) {
 		this.altitude = altitude;
 	}
+
+
+
 	public int getSlots() {
 		return slots;
 	}
+
+
+
 	public void setSlots(int slots) {
 		this.slots = slots;
 	}
+
+
+
 	public int getBikes() {
 		return bikes;
 	}
+
+
+
 	public void setBikes(int bikes) {
 		this.bikes = bikes;
 	}
-	public List<Integer> getNearbyStations() {
+
+
+
+	public String[] getNearbyStations() {
 		return nearbyStations;
 	}
-	public void setNearbyStations(List<Integer> nearbyStations) {
+
+
+
+	public void setNearbyStations(String[] nearbyStations) {
 		this.nearbyStations = nearbyStations;
 	}
+
+
+
 	public String getStatus() {
 		return status;
 	}
+
+
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+
+
 	@Override
 	public String toString() {
 		return "Bicing [id=" + id + ", type=" + type + ", latitude=" + latitude + ", longitude=" + longitude
 				+ ", streetName=" + streetName + ", streetNumber=" + streetNumber + ", altitude=" + altitude
-				+ ", slots=" + slots + ", bikes=" + bikes + ", nearbyStations=" + nearbyStations + ", status=" + status
-				+ "]";
+				+ ", slots=" + slots + ", bikes=" + bikes + ", nearbyStations=" + Arrays.toString(nearbyStations)
+				+ ", status=" + status + "]";
 	}
+
 	
 	
 }
+	
+	
