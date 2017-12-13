@@ -20,9 +20,16 @@ public class Principal {
 		}
 	}
 	
-	public static double getDistance(double x1, double y1, double x2, double y2) {
-		double point1 = Math.pow(x1, 2)+Math.pow(y1, 2);
-		double point2 = Math.pow(x2, 2)+Math.pow(y2, 2);
+	public static int compareByCloseness(Bicing b1, Bicing b2) {
+		double homeLat = 41.382763;
+		double homeLong = 2.1372623;
+		if ( Math.pow(b1.getLatitude()-homeLat, 2)+Math.pow(b1.getLongitude()-homeLong, 2) == Math.pow(b2.getLatitude()-homeLat, 2)+Math.pow(b2.getLongitude()-homeLong, 2) ) {
+			return 0;
+		} else if ( Math.pow(b1.getLatitude()-homeLat, 2)+Math.pow(b1.getLongitude()-homeLong, 2) > Math.pow(b2.getLatitude()-homeLat, 2)+Math.pow(b2.getLongitude()-homeLong, 2) ) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -118,9 +125,25 @@ public class Principal {
 		//	Indica les coordinades de la direcció (podeu averiguar-les amb el Google Maps):
 		//	Latitud: 41.382763
 		//	Longitud: 2.1372623
+		System.out.println("6. Mostra les 3 estacions més properes a la teva casa que estiguin obertes i indica de què tipus són (1.5 punts)");
+		
+		bicingStationsList.stream()
+		.filter(b -> b.getStatus().equals("OPN"))
+		.sorted(Principal::compareByCloseness)
+		.limit(3)
+		.forEach(b -> System.out.println(b.getId()+": "+b.getStreetName()+", "+b.getStreetNumber()+" tipus: "+b.getType()));
+		
+		System.out.println();
+		System.out.println();
 		
 		// 7. Mostra l’estació elèctrica més propera a la direcció que hagis indicat al punt anterior (1.5 punts) i el número de bicis disponibles
+		System.out.println("7. Mostra l’estació elèctrica més propera a la direcció que hagis indicat al punt anterior (1.5 punts) i el número de bicis disponibles");
 		
+		bicingStationsList.stream()
+		.filter(b -> b.getStatus().equals("OPN"))
+		.sorted(Principal::compareByCloseness)
+		.limit(1)
+		.forEach(b -> System.out.println(b.getId()+": "+b.getStreetName()+", "+b.getStreetNumber()+" tipus: "+b.getBikes()));
 	}
 
 }
