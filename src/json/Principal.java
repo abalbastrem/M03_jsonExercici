@@ -128,10 +128,10 @@ public class Principal {
 		System.out.println("6. Mostra les 3 estacions més properes a la teva casa que estiguin obertes i indica de què tipus són (1.5 punts)");
 		
 		bicingStationsList.stream()
-		.filter(b -> b.getStatus().equals("OPN"))
-		.sorted(Principal::compareByCloseness)
-		.limit(3)
-		.forEach(b -> System.out.println(b.getId()+": "+b.getStreetName()+", "+b.getStreetNumber()+" tipus: "+b.getType()));
+			.filter(b -> b.getStatus().equals("OPN"))
+			.sorted(Principal::compareByCloseness)
+			.limit(3)
+			.forEach(b -> System.out.println(b.getId()+": "+b.getStreetName()+", "+b.getStreetNumber()+" tipus: "+b.getType()));
 		
 		System.out.println();
 		System.out.println();
@@ -140,10 +140,22 @@ public class Principal {
 		System.out.println("7. Mostra l’estació elèctrica més propera a la direcció que hagis indicat al punt anterior (1.5 punts) i el número de bicis disponibles");
 		
 		bicingStationsList.stream()
-		.filter(b -> b.getStatus().equals("OPN"))
-		.sorted(Principal::compareByCloseness)
-		.limit(1)
-		.forEach(b -> System.out.println(b.getId()+": "+b.getStreetName()+", "+b.getStreetNumber()+" tipus: "+b.getBikes()));
+			.filter(b -> b.getStatus().equals("OPN"))
+			.sorted(Principal::compareByCloseness)
+			.limit(1)
+			.forEach(b -> System.out.println(b.getId()+": "+b.getStreetName()+", "+b.getStreetNumber()+" num bikes: "+b.getBikes()));
+		
+		System.out.println();
+		System.out.println();
+		
+		// PARAL·LEL //
+		bicingStationsList.stream()
+			.parallel()
+			.filter(b -> b.getStatus().equals("OPN"))
+			.sorted(Principal::compareByStreetNameAndNumber)
+			.forEach(b -> System.out.println(b.getId()+": "+b.getStreetName()+", "+b.getStreetNumber()+" tipus: "+b.getType()));
+		
+		// Cada vegada s'imprimeix en un ordre diferent
 	}
 
 }
